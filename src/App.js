@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import HeaderComponent from "./UI-Components/HeaderComponent";
+import HomeComponent from "./UI-Components/HomeComponent";
+import ProductPage from "./UI-Components/ProductPage";
+import ProductFullDetailsComponent from "./UI-Components/ProductFullDetailsComponent";
+import WebNavbarComponent from "./UI-Components/WebNavbarComponent";
+import { Routes, Route } from 'react-router-dom'
+import ProductCart from "./UI-Components/ProductCart";
+import UserForm from "./UserProfileAuth/UserForm";
+import UserLogin from "./UserProfileAuth/UserLogin";
+import UserRegister from "./UserProfileAuth/UserRegister";
+import MobileNavBar from "./UI-Components/MobileNavBar";
+import FooterComponent from "./UI-Components/FooterComponent";
+import PaymentSuccess from "./PaymentIntegrations/PaymentSuccess";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <HeaderComponent />
+      <WebNavbarComponent />
+      <MobileNavBar/>
+
+      <Routes>
+        <Route path="/" element={<HomeComponent />} />
+        <Route path="products/:category" element={<ProductPage />} />
+        <Route path="/product/:title" element={<ProductFullDetailsComponent />} />
+        <Route path="/cart" element={<ProductCart />} />
+        <Route path="/success" element={<PaymentSuccess />} />
+        <Route path="/user" element={<UserForm />}>
+          <Route path="/user/register" element={<UserRegister />} />
+          <Route path="/user/login" element={<UserLogin />} />
+          <Route />
+        </Route>
+
+      </Routes>
+      <FooterComponent/>
+
+    </>
   );
 }
 

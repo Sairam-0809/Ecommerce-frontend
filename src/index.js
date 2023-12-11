@@ -1,13 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './App.css'
+import 'react-toastify/dist/ReactToastify.css';
 
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import ReduxStore from './ReduxStore/ReduxStore';
+import { PayPalScriptProvider} from "@paypal/react-paypal-js";
+
+const initialOptions = {
+  clientId: "AcsN_3p_B8j8EiVwAUfvLV3cbJcNXgMPJEd45fxbPpyIB6dbKHdNKTLZDXUKucOHyrPuV6tA0SUhPnNT",
+  currency: "USD",
+}
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Provider store={ReduxStore}>
+        <PayPalScriptProvider options={initialOptions}>
+        <App />
+        </PayPalScriptProvider>
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
